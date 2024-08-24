@@ -43,13 +43,17 @@ html, body {
   border-radius: 8px;
 }
 
-.primary-btn {
+.btn-action {
   font-size: 12px;
   font-weight: bold;
   height: 40px;
-  width: 70px;
+  min-width: 70px;
   border-radius: 5px;
   border: none;
+}
+
+.primary-btn {
+  @extend .btn-action;
   background-color: var(--dark-yellow);
   cursor: pointer;
   color: var(--text-gray);
@@ -114,50 +118,140 @@ html, body {
 .action-menu {
   position: relative;
   display: inline-block;
+
+  .menu-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 0;
+  }
+
+  .dot {
+    display: block;
+    width: 4px;
+    height: 4px;
+    background-color: var(--text-gray);
+    border-radius: 50%;
+    margin: 2px auto;
+  }
+
+  .menu-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border: 1px solid var(--light-gray);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1000;
+    top: 100%;
+    right: 0;
+
+    button {
+      display: block;
+      width: 100%;
+      padding: 8px 12px;
+      border: none;
+      background: none;
+      text-align: left;
+      cursor: pointer;
+
+      &:hover {
+        background-color: var(--light-gray);
+      }
+    }
+  }
+
+  &.show .menu-content {
+    display: block;
+  }
 }
 
-.menu-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 20px;
-  padding: 0;
-}
+.container-form {
+  padding: 20px;
+  background-color: var(--basic-white);
+  border-radius: 2px;
+  min-width: 700px;
+  display: flex;
+  flex-direction: column;
 
-.dot {
-  display: block;
-  width: 4px;
-  height: 4px;
-  background-color: var(--text-gray);
-  border-radius: 50%;
-  margin: 2px auto;
-}
+  h1 {
+    margin-bottom: 0;
+  }
 
-.menu-content {
-  display: none;
-  position: absolute;
-  background-color: white;
-  border: 1px solid var(--light-gray);
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  z-index: 1000;
-  top: 100%;
-  right: 0;
-}
+  hr {
+    border: solid 1px;
+    width: 100%;
+    margin-bottom: 20px;
+  }
 
-.menu-content button {
-  display: block;
-  width: 100%;
-  padding: 8px 12px;
-  border: none;
-  background: none;
-  text-align: left;
-  cursor: pointer;
-}
+  .form-container {
+    margin-bottom: 30px;
+  }
 
-.menu-content button:hover {
-  background-color: var(--light-gray);
-}
+  .title-div {
+    text-align: center;
+    padding-bottom: 15px;
+  }
 
-.action-menu .menu-content.show {
-  display: block;
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+
+    label {
+      margin-bottom: 5px;
+      font-weight: bold;
+      font-size: 12px;
+    }
+
+    input {
+      padding: 10px;
+      border: 1px solid var(--dark-gray);
+      border-radius: 5px;
+      font-size: 13px;
+    }
+  }
+
+  .button-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    button {
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+
+      &.reset-btn {
+        @extend .btn-action;
+        background-color: var(--light-gray);
+        color: var(--text-gray);
+
+        &:hover {
+          background-color: var(--hover-gray);
+        }
+      }
+
+      &.submit-btn {
+        @extend .primary-btn;
+      }
+    }
+
+    .reset-btn {
+      justify-self: end;
+    }
+
+    .submit-btn {
+      justify-self: start;
+    }
+  }
 }
