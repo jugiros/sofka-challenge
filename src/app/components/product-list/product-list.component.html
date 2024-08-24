@@ -1,5 +1,11 @@
 <div class="search-container">
-  <input type="text" placeholder="Search..." class="search-input" />
+  <input
+    type="text"
+    placeholder="Search..."
+    class="search-input"
+    [(ngModel)]="searchTerm"
+    (ngModelChange)="onSearchChange()"
+  />
   <button type="button" class="primary-btn" (click)="createProduct()">Agregar</button>
 </div>
 
@@ -42,7 +48,7 @@
   </div>
 
   <div class="results">
-    <span>{{ products.length }} Resultados</span>
+    <span>{{ paginatedProducts.length }} Resultados</span>
     <select [(ngModel)]="pageSize" class="page-size-select" (change)="onPageSizeChange($event)">
       <option *ngFor="let size of pageSizes" [value]="size">{{ size }}</option>
     </select>

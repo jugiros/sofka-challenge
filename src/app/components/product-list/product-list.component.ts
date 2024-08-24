@@ -24,6 +24,7 @@ export class ProductListComponent implements OnInit {
   pageSize = 5;
   pageSizes = [5, 10, 20];
   currentPage = 1;
+  searchTerm: string = '';
 
   constructor(
     private router: Router,
@@ -55,6 +56,14 @@ export class ProductListComponent implements OnInit {
     this.router.navigate(['/create-edit']);
   }
 
+  filterProducts() {
+    const lowerCaseSearchTerm = this.searchTerm.toLowerCase();
+    this.paginatedProducts = this.products.filter(product =>
+      product.name.toLowerCase().includes(lowerCaseSearchTerm) ||
+      product.description.toLowerCase().includes(lowerCaseSearchTerm)
+    ).slice(0, this.pageSize);
+  }
+
   onPageSizeChange(event: Event) {
     const target = event.target as HTMLSelectElement | null;
     if (target) {
@@ -70,11 +79,16 @@ export class ProductListComponent implements OnInit {
     this.paginatedProducts = this.products.slice(startIndex, endIndex);
   }
 
+  onSearchChange() {
+    this.currentPage = 1;
+    this.filterProducts();
+  }
+
   loadProducts() {
     this.productService.getAllProducts(this.endpointList).subscribe({
       next: (response) => {
         this.products = response.data;
-        this.updatePaginatedProducts();
+        this.filterProducts();
       },
       error: (error) => {
         this.toastService.showToast('Error al consumir el servicio!', 'error');
