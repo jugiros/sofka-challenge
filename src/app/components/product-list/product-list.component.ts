@@ -13,11 +13,11 @@ import { Router } from "@angular/router";
 })
 export class ProductListComponent {
 
-  selectedProductId: number | null = null;
+  selectedProductId: string | null = null;
 
   productos: ProductDto[] = [
     {
-      id: 1,
+      id: "name",
       logo: 'assets/logo1.png',
       nombre: 'Nombre del producto',
       descripcion: 'Descripción',
@@ -36,15 +36,15 @@ export class ProductListComponent {
     }
   }
 
-  toggleMenu(productId: number) {
+  toggleMenu(productId: string) {
     this.selectedProductId = this.selectedProductId === productId ? null : productId;
   }
 
-  editProduct(productId: number) {
+  editProduct(productId: string) {
     console.log('Edit product:', productId);
   }
 
-  deleteProduct(productId: number) {
+  deleteProduct(productId: string) {
     console.log('Delete product:', productId);
   }
 

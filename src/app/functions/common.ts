@@ -9,3 +9,10 @@ export function marginErrorValidator(min: number, max: number): ValidatorFn {
     return null;
   };
 }
+
+export function getMinDateRevision(dateRelease: string): string {
+  if (!dateRelease) return '';
+  const releaseDate = new Date(dateRelease);
+  const revisionDate = new Date(releaseDate.setFullYear(releaseDate.getFullYear() + 1));
+  return revisionDate.toISOString().split('T')[0];
+}

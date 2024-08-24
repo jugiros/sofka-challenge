@@ -25,3 +25,16 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+Levantar el proyecto.
+
+Para levantar el proyecto se debe correr el comando:
+npm run start
+
+NOTA: Dentro del servidor se intaló el paquete:
+ng serve
+npm run start
+
+Y se activó la opción:
+cors: true
+Ya que se tenía error de CORS tener en cuenta la validación antes indicada.
