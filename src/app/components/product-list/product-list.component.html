@@ -1,6 +1,6 @@
 <div class="search-container">
   <input type="text" placeholder="Search..." class="search-input" />
-  <button class="primary-btn">Agregar</button>
+  <button type="button" class="primary-btn" (click)="createProduct()">Agregar</button>
 </div>
 
 <div class="container">
@@ -12,6 +12,7 @@
       <th>Descripción</th>
       <th>Fecha de liberación</th>
       <th>Fecha de reestructuración</th>
+      <th></th>
     </tr>
     </thead>
     <tbody>
@@ -21,6 +22,19 @@
       <td>{{ producto.descripcion }}</td>
       <td>{{ producto.fechaLiberacion | date: 'dd/MM/yyyy' }}</td>
       <td>{{ producto.fechaReestructuracion | date: 'dd/MM/yyyy' }}</td>
+      <td>
+        <div class="action-menu">
+          <button class="menu-btn" (click)="toggleMenu(producto.id)">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </button>
+          <div class="menu-content" [ngClass]="{'show': selectedProductId === producto.id}">
+            <button (click)="editProduct(producto.id)">Editar</button>
+            <button (click)="deleteProduct(producto.id)">Eliminar</button>
+          </div>
+        </div>
+      </td>
     </tr>
     </tbody>
   </table>
