@@ -214,6 +214,12 @@ html, body {
       border: 1px solid var(--dark-gray);
       border-radius: 5px;
       font-size: 13px;
+
+      &.invalid {
+        border-color: var(--error-color);
+        border-width: 2px;
+        border-style: solid;
+      }
     }
   }
 
@@ -235,6 +241,7 @@ html, body {
         @extend .btn-action;
         background-color: var(--light-gray);
         color: var(--text-gray);
+        margin-right: 20px;
 
         &:hover {
           background-color: var(--hover-gray);
@@ -243,6 +250,7 @@ html, body {
 
       &.submit-btn {
         @extend .primary-btn;
+        margin-left: 20px;
       }
     }
 
@@ -253,5 +261,13 @@ html, body {
     .submit-btn {
       justify-self: start;
     }
+  }
+
+  .text-danger {
+    color: var(--error-color);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14.22px;
+    margin-top: 5px;
   }
 }
