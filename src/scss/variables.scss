@@ -1,0 +1,11 @@
+$light-gray: #F4F6F9;
+$dark-gray: #ccc;
+$hover-gray: #e3e3e3;
+$basic-white: #fff;
+
+:root {
+  --light-gray: #{$light-gray};
+  --dark-gray: #{$dark-gray};
+  --basic-white: #{$basic-white};
+  --hover-gray: #{$hover-gray};
+}
