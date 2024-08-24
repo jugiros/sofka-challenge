@@ -1,0 +1,2 @@
+# sofka-challenge
+Prueba técnica
