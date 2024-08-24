@@ -12,4 +12,8 @@ export class ProductService extends BaseService<ProductDto> {
   createProduct(endpointKey: string, product: ProductDto): Observable<ProductDto> {
     return this.create(endpointKey, product);
   }
+
+  getAllProducts(endpointKey: string): Observable<any> {
+    return this.getAll(endpointKey);
+  }
 }

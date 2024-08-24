@@ -1,8 +1,8 @@
 export interface ProductDto {
   id: string;
   logo: string;
-  nombre: string;
-  descripcion: string;
-  fechaLiberacion: Date;
-  fechaReestructuracion: Date;
+  name: string;
+  description: string;
+  date_release: Date;
+  date_revision: Date;
 }
