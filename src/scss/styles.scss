@@ -10,6 +10,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: var(--text-gray);
 }
 
 html, body {
@@ -27,6 +28,9 @@ html, body {
 }
 
 .search-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 20px;
 }
 
@@ -36,6 +40,22 @@ html, body {
   font-size: 14px;
   border: 2px solid var(--dark-gray);
   border-radius: 8px;
+}
+
+.primary-btn {
+  font-size: 12px;
+  font-weight: bold;
+  height: 40px;
+  width: 70px;
+  border-radius: 5px;
+  border: none;
+  background-color: var(--dark-yellow);
+  cursor: pointer;
+  color: var(--text-gray);
+
+  &:hover {
+    background-color: var(--light-yellow);
+  }
 }
 
 .custom-table {
