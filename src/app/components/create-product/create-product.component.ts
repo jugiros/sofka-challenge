@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {NgClass, NgIf} from "@angular/common";
+import {marginErrorValidator} from "../../functions/common";
 
 @Component({
   selector: 'app-create-product',
@@ -24,9 +25,9 @@ export class CreateProductComponent implements OnInit{
 
   private initializeForm() {
     this.form = this.formBuilder.group({
-      id: ["", [Validators.required]],
-      name: ["", [Validators.required]],
-      description: ["", [Validators.required]],
+      id: ["", [Validators.required, marginErrorValidator(3, 10)]],
+      name: ["", [Validators.required, marginErrorValidator(5, 100)]],
+      description: ["", [Validators.required, marginErrorValidator(10, 200)]],
       logo: ["", [Validators.required]],
       date_release: ["", [Validators.required]],
       date_revision: ["", [Validators.required]]

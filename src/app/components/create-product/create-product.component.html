@@ -13,6 +13,10 @@
               *ngIf="form.get('id')?.touched && (form.get('id')?.hasError('required'))">
           <span>El ID es requerido</span>
         </span>
+        <span class="text-danger"
+              *ngIf="form.get('id')?.value !== '' && form.get('id')?.hasError('marginError')">
+          El ID debe tener entre 3 y 10 caracteres
+        </span>
       </div>
       <div class="form-group">
         <label for="name">Nombre</label>
@@ -22,6 +26,10 @@
               *ngIf="form.get('name')?.touched && (form.get('name')?.hasError('required'))">
           <span>El nombre es requerido</span>
         </span>
+        <span class="text-danger"
+              *ngIf="form.get('name')?.value !== '' && form.get('name')?.hasError('marginError')">
+          El nombre debe tener entre 5 y 100 caracteres
+        </span>
       </div>
       <div class="form-group">
         <label for="description">Descripción</label>
@@ -30,6 +38,10 @@
         <span class="text-danger"
               *ngIf="form.get('description')?.touched && (form.get('description')?.hasError('required'))">
           <span>La descripción es requerida</span>
+        </span>
+        <span class="text-danger"
+              *ngIf="form.get('description')?.value !== '' && form.get('description')?.hasError('marginError')">
+          La descripción debe tener entre 10 y 200 caracteres
         </span>
       </div>
       <div class="form-group">

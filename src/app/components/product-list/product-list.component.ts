@@ -49,7 +49,7 @@ export class ProductListComponent {
   }
 
   createProduct() {
-    this.router.navigate(['/create']);
+    this.router.navigate(['/create-edit']);
   }
 
   pageSize = 5;
