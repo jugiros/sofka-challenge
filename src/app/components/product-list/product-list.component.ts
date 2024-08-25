@@ -6,6 +6,7 @@ import { Router } from "@angular/router";
 import { ProductService } from "../../services/product/product.service";
 import { environment } from "../../environments/environment";
 import { ToastService } from "../../services/common/toast.service";
+import {ModalService} from "../../services/common/modal.service";
 
 @Component({
   selector: 'app-product-list',
@@ -29,7 +30,8 @@ export class ProductListComponent implements OnInit {
   constructor(
     private router: Router,
     private productService: ProductService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private modalService: ModalService
   ) {}
 
   @HostListener('document:click', ['$event'])
@@ -48,8 +50,11 @@ export class ProductListComponent implements OnInit {
     console.log('Edit product:', productId);
   }
 
-  deleteProduct(productId: string) {
-    console.log('Delete product:', productId);
+  async deleteProduct(product: ProductDto) {
+    const confirmed = await this.modalService.open(`¿Estás seguro de eliminar el producto ${product.name}?`);
+    if (confirmed) {
+      console.log('Deleting product:', product.id);
+    }
   }
 
   createProduct() {
@@ -58,10 +63,12 @@ export class ProductListComponent implements OnInit {
 
   filterProducts() {
     const lowerCaseSearchTerm = this.searchTerm.toLowerCase();
-    this.paginatedProducts = this.products.filter(product =>
-      product.name.toLowerCase().includes(lowerCaseSearchTerm) ||
-      product.description.toLowerCase().includes(lowerCaseSearchTerm)
-    ).slice(0, this.pageSize);
+    this.paginatedProducts = this.products
+      .filter(product =>
+        product.name.toLowerCase().includes(lowerCaseSearchTerm) ||
+        product.description.toLowerCase().includes(lowerCaseSearchTerm)
+      )
+      .slice((this.currentPage - 1) * this.pageSize, this.currentPage * this.pageSize);
   }
 
   onPageSizeChange(event: Event) {

@@ -16,4 +16,8 @@ export class ProductService extends BaseService<ProductDto> {
   getAllProducts(endpointKey: string): Observable<any> {
     return this.getAll(endpointKey);
   }
+
+  getValidationId(endpointKey: string, id: string): Observable<boolean> {
+    return this.getValidateById(endpointKey, id);
+  }
 }

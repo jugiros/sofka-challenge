@@ -13,10 +13,10 @@ export abstract class BaseService<T> {
     this.baseUrlApi = environment.baseUrlApi;
   }
 
-  private getEndpointUrl(endpoint: string, id?: number): string {
+  private getEndpointUrl(endpoint: string, id?: string): string {
     let url = `${this.baseUrlApi}${endpoint}`;
     if (id !== undefined) {
-      url = url.replace('{id}', id.toString());
+      url = url.replace('{id}', id);
     }
     return url;
   }
@@ -26,9 +26,14 @@ export abstract class BaseService<T> {
     return this.http.get<T[]>(url);
   }
 
-  getById(endpointKey: string, id: number): Observable<T> {
+  getById(endpointKey: string, id: string): Observable<T> {
     const url = this.getEndpointUrl(endpointKey, id);
     return this.http.get<T>(url);
+  }
+
+  getValidateById(endpointKey: string, id: string): Observable<boolean> {
+    const url = this.getEndpointUrl(endpointKey, id);
+    return this.http.get<boolean>(url);
   }
 
   create(endpointKey: string, item: T): Observable<T> {
@@ -36,12 +41,12 @@ export abstract class BaseService<T> {
     return this.http.post<T>(url, item);
   }
 
-  update(endpointKey: string, id: number, item: T): Observable<T> {
+  update(endpointKey: string, id: string, item: T): Observable<T> {
     const url = this.getEndpointUrl(endpointKey, id);
     return this.http.put<T>(url, item);
   }
 
-  delete(endpointKey: string, id: number): Observable<void> {
+  delete(endpointKey: string, id: string): Observable<void> {
     const url = this.getEndpointUrl(endpointKey, id);
     return this.http.delete<void>(url);
   }

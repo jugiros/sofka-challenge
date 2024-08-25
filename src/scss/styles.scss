@@ -121,54 +121,53 @@ html, body {
 .action-menu {
   position: relative;
   display: inline-block;
-
-  .menu-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 20px;
-    padding: 0;
-  }
-
-  .dot {
-    display: block;
-    width: 4px;
-    height: 4px;
-    background-color: var(--text-gray);
-    border-radius: 50%;
-    margin: 2px auto;
-  }
-
-  .menu-content {
-    display: none;
-    position: absolute;
-    background-color: white;
-    border: 1px solid var(--light-gray);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    z-index: 1000;
-    top: 100%;
-    right: 0;
-
-    button {
-      display: block;
-      width: 100%;
-      padding: 8px 12px;
-      border: none;
-      background: none;
-      text-align: left;
-      cursor: pointer;
-
-      &:hover {
-        background-color: var(--light-gray);
-      }
-    }
-  }
-
-  &.show .menu-content {
-    display: block;
-  }
 }
 
+.menu-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  padding: 0;
+}
+
+.dot {
+  display: block;
+  width: 4px;
+  height: 4px;
+  background-color: var(--text-gray);
+  border-radius: 50%;
+  margin: 2px auto;
+}
+
+.menu-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  border: 1px solid var(--light-gray);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  z-index: 1000;
+  top: 100%;
+  right: 0;
+}
+
+.menu-content.show {
+  display: block;
+}
+
+.menu-content button {
+  display: block;
+  width: 100%;
+  padding: 8px 12px;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.menu-content button:hover {
+  background-color: var(--light-gray);
+}
 .container-form {
   padding: 20px;
   background-color: var(--basic-white);

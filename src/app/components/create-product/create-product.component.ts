@@ -7,6 +7,7 @@ import {ProductService} from "../../services/product/product.service";
 import {environment} from "../../environments/environment";
 import {Router} from "@angular/router";
 import {ToastService} from "../../services/common/toast.service";
+import {debounceTime, distinctUntilChanged, of, Subscription, switchMap} from "rxjs";
 
 @Component({
   selector: 'app-create-product',
@@ -25,8 +26,10 @@ export class CreateProductComponent implements OnInit{
   today: string = '';
   minDateRevision: string = '';
   private readonly endpointCreate = environment.endpoints.postProducts;
+  private readonly endpointValidateId = environment.endpoints.verificationProduct;
+  idValidationSubscription$: Subscription = new Subscription();
 
-    constructor(
+  constructor(
     private formBuilder: FormBuilder,
     private productService: ProductService,
     private router: Router,
@@ -48,10 +51,61 @@ export class CreateProductComponent implements OnInit{
       date_release: this.today
     });
     this.minDateRevision = getMinDateRevision(this.today);
+
+    this.setupIdValidation();
+  }
+
+  setupIdValidation() {
+    const idControl = this.form.get('id');
+    if (idControl) {
+      this.idValidationSubscription$.unsubscribe();
+
+      let previousId: string | null = null;
+
+      this.idValidationSubscription$ = idControl.valueChanges.pipe(
+        debounceTime(1000),
+        distinctUntilChanged(),
+        switchMap(id => {
+          if (!id || id === previousId) {
+            return of(null);
+          }
+
+          previousId = id;
+
+          idControl.setErrors({
+            ...idControl.errors,
+            validating: true
+          });
+          return this.productService.getValidationId(this.endpointValidateId, id).pipe(
+            switchMap(validationResult => {
+              if (validationResult) {
+                idControl.setErrors({
+                  ...idControl.errors,
+                  idTaken: true
+                });
+              } else {
+                idControl.clearValidators();
+                idControl.setValidators([Validators.required, marginErrorValidator(3, 10)]);
+                idControl.updateValueAndValidity();
+              }
+
+              return of(null);
+            })
+          );
+        })
+      ).subscribe();
+    }
   }
 
   resetForm() {
-    this.form.reset();
+    this.form.reset({
+      id: '',
+      name: '',
+      description: '',
+      logo: '',
+      date_release: this.today,
+      date_revision: ''
+    });
   }
 
   onDateReleaseChange(event: Event) {

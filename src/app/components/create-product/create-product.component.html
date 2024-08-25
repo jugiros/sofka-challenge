@@ -19,6 +19,10 @@
               *ngIf="form.get('id')?.value !== '' && form.get('id')?.hasError('marginError')">
           El ID debe tener entre 3 y 10 caracteres
         </span>
+        <span class="text-danger"
+              *ngIf="form.get('id')?.hasError('idTaken')">
+          Este ID ya está en uso
+        </span>
       </div>
       <div class="form-group">
         <label for="name">Nombre</label>

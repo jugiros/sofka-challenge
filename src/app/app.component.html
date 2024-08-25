@@ -1,2 +1,8 @@
 <app-toast *ngIf="toast" [message]="toast.message" [type]="toast.type"></app-toast>
+<app-confirmation-modal
+  *ngIf="showModal"
+  [message]="modalMessage"
+  (confirm)="onModalConfirm()"
+  (cancel)="onModalCancel()"
+></app-confirmation-modal>
 <router-outlet></router-outlet>
