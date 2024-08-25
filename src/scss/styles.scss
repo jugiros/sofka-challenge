@@ -20,10 +20,10 @@ html, body {
   padding: 20px;
   background-color: var(--basic-white);
   border-radius: 2px;
-  width: 100%;
-  min-width: 700px;
+  width: auto;
   height: 400px;
   max-width: 1200px;
+  min-width: 700px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -74,7 +74,8 @@ html, body {
 
 .custom-table-container {
   flex: 1;
-  overflow-y: auto;
+  overflow-x: auto;
+  max-width: 100%;
 }
 
 .custom-table {
@@ -86,6 +87,7 @@ html, body {
     padding: 12px 15px;
     text-align: left;
     border-bottom: 1px solid var(--light-gray);
+    white-space: nowrap;
   }
 
   th {
@@ -98,10 +100,8 @@ html, body {
     font-size: 13px;
   }
 
-  tbody {
-    tr:hover {
-      background-color: var(--hover-gray);
-    }
+  tbody tr:hover {
+    background-color: var(--hover-gray);
   }
 }
 
@@ -176,6 +176,7 @@ html, body {
 .menu-content button:hover {
   background-color: var(--light-gray);
 }
+
 .container-form {
   padding: 20px;
   background-color: var(--basic-white);
@@ -320,4 +321,29 @@ html, body {
   background-size: cover;
   background-repeat: no-repeat;
   top: 3px;
+}
+
+@media screen and (max-width: 768px) {
+  .custom-table {
+    th, td {
+      font-size: 12px;
+      padding: 8px 10px;
+    }
+
+    .action-menu {
+      width: 100%;
+    }
+
+    .menu-btn {
+      font-size: 16px;
+    }
+
+    .container-form {
+      min-width: auto;
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
 }
