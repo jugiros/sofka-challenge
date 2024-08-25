@@ -37,7 +37,7 @@
               <span class="dot"></span>
             </button>
             <div class="menu-content" [ngClass]="{'show': selectedProductId === product.id}">
-              <button (click)="editProduct(product.id)">Editar</button>
+              <button (click)="editProduct(product)">Editar</button>
               <button (click)="deleteProduct(product)">Eliminar</button>
             </div>
           </div>

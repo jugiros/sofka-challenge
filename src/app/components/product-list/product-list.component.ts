@@ -7,6 +7,7 @@ import { ProductService } from "../../services/product/product.service";
 import { environment } from "../../environments/environment";
 import { ToastService } from "../../services/common/toast.service";
 import {ModalService} from "../../services/common/modal.service";
+import {ProductDataService} from "../../services/product/productData.service";
 
 @Component({
   selector: 'app-product-list',
@@ -32,7 +33,8 @@ export class ProductListComponent implements OnInit {
     private router: Router,
     private productService: ProductService,
     private toastService: ToastService,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private productDataService: ProductDataService
   ) {}
 
   @HostListener('document:click', ['$event'])
@@ -47,8 +49,11 @@ export class ProductListComponent implements OnInit {
     this.selectedProductId = this.selectedProductId === productId ? null : productId;
   }
 
-  editProduct(productId: string) {
-    console.log('Edit product:', productId);
+  editProduct(product: ProductDto) {
+    if (product) {
+      this.productDataService.setProduct(product);
+      this.router.navigate(['/create-edit']);
+    }
   }
 
   async deleteProduct(product: ProductDto) {

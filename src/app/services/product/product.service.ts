@@ -24,4 +24,8 @@ export class ProductService extends BaseService<ProductDto> {
   deleteProduct(endpointKey: string, id: string) {
     return this.delete(endpointKey, id);
   }
+
+  updateProduct(endpointKey: string, id: string, product: ProductDto) {
+    return this.update(endpointKey, id, product);
+  }
 }
