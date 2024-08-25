@@ -34,6 +34,7 @@ npm run start
 NOTA: Dentro del servidor se intaló el paquete:
 ng serve
 npm run start
+ng test
 
 Y se activó la opción:
 cors: true
