@@ -20,4 +20,8 @@ export class ProductService extends BaseService<ProductDto> {
   getValidationId(endpointKey: string, id: string): Observable<boolean> {
     return this.getValidateById(endpointKey, id);
   }
+
+  deleteProduct(endpointKey: string, id: string) {
+    return this.delete(endpointKey, id);
+  }
 }

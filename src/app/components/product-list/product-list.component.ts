@@ -19,6 +19,7 @@ export class ProductListComponent implements OnInit {
 
   selectedProductId: string | null = null;
   private readonly endpointList = environment.endpoints.getProducts;
+  private readonly endpointDeleteProduct = environment.endpoints.deleteProducts;
 
   products: ProductDto[] = [];
   paginatedProducts: ProductDto[] = [];
@@ -53,7 +54,15 @@ export class ProductListComponent implements OnInit {
   async deleteProduct(product: ProductDto) {
     const confirmed = await this.modalService.open(`¿Estás seguro de eliminar el producto ${product.name}?`);
     if (confirmed) {
-      console.log('Deleting product:', product.id);
+      this.productService.deleteProduct(this.endpointDeleteProduct, product.id).subscribe({
+        next: (response) => {
+          this.toastService.showToast('Producto eliminado e manera correcta.!', 'success');
+          this.loadProducts();
+        },
+        error: (error) => {
+          this.toastService.showToast('Error al consumir el servicio!', 'error');
+        }
+      });
     }
   }
 

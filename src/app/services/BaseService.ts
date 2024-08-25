@@ -26,11 +26,6 @@ export abstract class BaseService<T> {
     return this.http.get<T[]>(url);
   }
 
-  getById(endpointKey: string, id: string): Observable<T> {
-    const url = this.getEndpointUrl(endpointKey, id);
-    return this.http.get<T>(url);
-  }
-
   getValidateById(endpointKey: string, id: string): Observable<boolean> {
     const url = this.getEndpointUrl(endpointKey, id);
     return this.http.get<boolean>(url);
