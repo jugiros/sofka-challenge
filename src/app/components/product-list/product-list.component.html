@@ -11,14 +11,23 @@
 
 <div class="container">
   <div class="custom-table-container">
-    <table class="custom-table">
+    <table *ngIf="paginatedProducts.length > 0" class="custom-table">
       <thead>
       <tr>
         <th>Logo</th>
         <th>Nombre del producto</th>
-        <th>Descripción</th>
-        <th>Fecha de liberación</th>
-        <th>Fecha de reestructuración</th>
+        <th>
+          Descripción
+          <span class="tooltip-icon"></span>
+        </th>
+        <th>
+          Fecha de liberación
+          <span class="tooltip-icon"></span>
+        </th>
+        <th>
+          Fecha de reestructuración
+          <span class="tooltip-icon"></span>
+        </th>
         <th></th>
       </tr>
       </thead>
@@ -45,6 +54,9 @@
       </tr>
       </tbody>
     </table>
+    <div class="label-container">
+      <label *ngIf="paginatedProducts.length === 0" class="label-list">No se tiene datos a visualizar</label>
+    </div>
   </div>
 
   <div class="results">

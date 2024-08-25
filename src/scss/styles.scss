@@ -1,8 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap');
 @import "variables";
 
 body {
-  font-family: 'Rubik', sans-serif;
+  font-family: 'Trebuchet MS', sans-serif;
   margin: 0;
   padding: 0;
   background-color: var(--light-gray);
@@ -22,11 +21,20 @@ html, body {
   background-color: var(--basic-white);
   border-radius: 2px;
   width: 100%;
+  min-width: 700px;
   height: 400px;
   max-width: 1200px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+}
+
+.label-container {
+  text-align: center;
+}
+
+.label-list {
+  font-weight: bold;
 }
 
 .search-container {
@@ -299,4 +307,17 @@ html, body {
     line-height: 14.22px;
     margin-top: 5px;
   }
+}
+
+.tooltip-icon {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  margin-left: 5px;
+  width: 16px;
+  height: 16px;
+  background-image: url('/assets/icons/info.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  top: 3px;
 }
